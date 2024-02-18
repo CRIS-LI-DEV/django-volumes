@@ -10,16 +10,30 @@ class Post(models.Model):
     
 
 
+class Archivo(models.Model):
+    titulo = models.CharField(max_length=200)
+    archivo = models.FileField(upload_to='archivos/') 
 
-class Article(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
+    def __str__(self):
+        return self.titulo
+
+class Imagen(models.Model):
+    titulo = models.CharField(max_length=200)
+    cover = models.ImageField(upload_to='images/')
+
+class Texto(models.Model):
+    texto = models.TextField()    
+
+class Contenido(models.Model):
+    texto = models.ForeignKey(Texto, on_delete= models.SET_NULL, null=True)
+    imagen = models.ForeignKey(Imagen,on_delete= models.SET_NULL,null=True)
+
+
+class Articulo(models.Model):
+    titulo = models.CharField(max_length=200)
+    introduccion = models.TextField()
+    contenido = models.ForeignKey(Texto, on_delete= models.SET_NULL,null=True)
+  
     publication_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el modelo User
+
     # Puedes agregar otros campos como categoría, imagen_principal, etc.
-
-class Comment(models.Model):
-    content = models.TextField()
-    publication_date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)  # Relación con el modelo User
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)  # Relación con el modelo Article

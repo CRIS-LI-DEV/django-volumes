@@ -91,6 +91,18 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'd--Fe6-GEBG6b23-afDE6-e4bBAf5eFe',
+#         'HOST': 'viaduct.proxy.rlwy.net',
+#         'PORT': '44957',
+#     }
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -130,7 +142,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media Files (uploaded from users)
-MEDIA_URL = "media/"
+# MEDIA_URL = "media/"
 MEDIA_ROOT = os.environ["RAILWAY_VOLUME_MOUNT_PATH"]
 
 # Default primary key field type
